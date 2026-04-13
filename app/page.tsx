@@ -388,7 +388,7 @@ export default function LandingPage() {
             </div>
             <div className="p-5 font-mono text-[13px] leading-loose space-y-0.5">
               <p className="text-[var(--muted-foreground)]/50"># add the MCP server to Claude Code</p>
-              <p><span className="text-[#10b981]">$</span> claude mcp add --transport http upwork-jobs https://your-domain.com/api/mcp</p>
+              <p><span className="text-[#10b981]">$</span> claude mcp add --transport http upwork-jobs https://jobs-mcp.devfrend.com/api/mcp</p>
               <p className="text-[var(--muted-foreground)]/50 mt-1"># authenticate via browser, then ask Claude:</p>
               <p className="mt-4"><span className="text-[#10b981]">&gt;</span> &quot;Show me top-scored Upwork jobs for Next.js&quot;</p>
               <p><span className="text-[#10b981]">&gt;</span> &quot;Mark job #42 as applying and draft a proposal&quot;</p>
