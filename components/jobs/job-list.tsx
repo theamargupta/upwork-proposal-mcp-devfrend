@@ -4,13 +4,14 @@ import { useState, useEffect, useCallback } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { JobCard } from './job-card'
 import { JobFilters } from './job-filters'
-import { Loader2 } from 'lucide-react'
+import { Loader2, Copy, Check } from 'lucide-react'
 import type { JobSummary, JobStatus, JobStats } from '@/lib/types'
 
 export function JobList() {
   const [jobs, setJobs] = useState<JobSummary[]>([])
   const [stats, setStats] = useState<JobStats | null>(null)
   const [loading, setLoading] = useState(true)
+  const [copied, setCopied] = useState(false)
   const [filters, setFilters] = useState({
     status: null as JobStatus | null,
     search: '',
@@ -52,18 +53,37 @@ export function JobList() {
     fetchStats()
   }
 
+  const handleCopyJson = async () => {
+    await navigator.clipboard.writeText(JSON.stringify(jobs, null, 2))
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   const handleFilterChange = (updates: Partial<typeof filters>) => {
     setFilters((prev) => ({ ...prev, ...updates }))
   }
 
   return (
     <div className="space-y-6">
-      <JobFilters
-        filters={filters}
-        onChange={handleFilterChange}
-        statusCounts={stats?.by_status || { new: 0, maybe: 0, applying: 0, applied: 0, skip: 0 }}
-        total={stats?.total || 0}
-      />
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <JobFilters
+            filters={filters}
+            onChange={handleFilterChange}
+            statusCounts={stats?.by_status || { new: 0, maybe: 0, applying: 0, applied: 0, skip: 0 }}
+            total={stats?.total || 0}
+          />
+        </div>
+        {jobs.length > 0 && (
+          <button
+            onClick={handleCopyJson}
+            className="mt-[3.25rem] h-9 px-3 rounded-xl border border-[var(--glass-border)] bg-white/[0.02] text-xs text-[var(--muted-foreground)] hover:text-foreground hover:border-[#10b981]/20 transition-all flex items-center gap-1.5 shrink-0"
+          >
+            {copied ? <Check size={13} className="text-[#10b981]" /> : <Copy size={13} />}
+            {copied ? 'Copied!' : 'Copy JSON'}
+          </button>
+        )}
+      </div>
 
       {loading ? (
         <div className="flex items-center justify-center py-20">
