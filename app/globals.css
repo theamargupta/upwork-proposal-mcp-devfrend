@@ -127,3 +127,36 @@
     @apply font-sans;
     }
 }
+
+/* ── Custom theme tokens ─────────────────────────── */
+:root {
+  --glass: rgba(17, 23, 30, 0.94);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --accent-muted: rgba(16, 185, 129, 0.08);
+  --muted-foreground: #94a3b8;
+  --sidebar-foreground: rgba(148, 163, 184, 0.7);
+}
+
+/* ── Background textures ─────────────────────────── */
+.bg-noise {
+  background-color: #0a0a12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+}
+
+.bg-ambient {
+  background-color: #0c0c16;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16, 185, 129, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(34, 211, 238, 0.02) 0%, transparent 60%);
+}
+
+.bg-mesh {
+  background-color: #0a0a12;
+  background-image:
+    radial-gradient(at 20% 30%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+    radial-gradient(at 80% 70%, rgba(34, 211, 238, 0.04) 0%, transparent 50%);
+}
+
+.glow-primary {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15), 0 0 60px rgba(16, 185, 129, 0.05);
+}

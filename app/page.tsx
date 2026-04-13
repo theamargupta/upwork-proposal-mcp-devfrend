@@ -1,3 +1,5 @@
+import { redirect } from 'next/navigation'
+
 export default function Home() {
-  return <div>upwork-job-mcp</div>
+  redirect('/dashboard')
 }
