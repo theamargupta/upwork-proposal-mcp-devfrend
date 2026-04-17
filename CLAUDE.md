@@ -5,6 +5,14 @@
 ## Overview
 MCP server + dashboard for Upwork job hunting. Chrome extension extracts jobs → Supabase stores them → MCP tools let Claude analyze/filter → Dashboard for visual tracking. Full OAuth 2.0 with PKCE for Claude/Cursor/ChatGPT clients.
 
+## Nested Context
+- `app/` — route groups, auth gate
+- `app/api/` — REST + MCP route
+- `lib/mcp/` — MCP server + tools + OAuth
+- `lib/supabase/` — server / service-role / client
+- `components/ui/` — ShadCN
+- `supabase/` — migrations, RLS, access log
+
 ## Tech Stack
 - Next.js 16.2.x (App Router, Server Components)
 - React 19, TypeScript strict mode
